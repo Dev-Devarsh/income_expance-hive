@@ -11,5 +11,5 @@ final class FetchData extends HomeState {
   FetchData(this.data);
 }
 
-final class ChangeDate extends HomeState {
-}
+final class ChangeDate extends HomeState {}
+final class MokeState extends HomeState {}

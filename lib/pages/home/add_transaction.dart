@@ -4,14 +4,14 @@ import 'package:income_expance/core/local_db/hive_local.dart';
 import 'package:income_expance/core/theme/static.dart' as Static;
 import 'package:flutter/services.dart';
 
-class AddIncomeExpanseNoGradient extends StatefulWidget {
-  const AddIncomeExpanseNoGradient({Key? key}) : super(key: key);
+class AddIncomeExpanse extends StatefulWidget {
+  const AddIncomeExpanse({Key? key}) : super(key: key);
 
   @override
-  AddIncomeExpanseNoGradientState createState() => AddIncomeExpanseNoGradientState();
+  AddIncomeExpanseState createState() => AddIncomeExpanseState();
 }
 
-class AddIncomeExpanseNoGradientState extends State<AddIncomeExpanseNoGradient> {
+class AddIncomeExpanseState extends State<AddIncomeExpanse> {
   DateTime selectedDate = DateTime.now();
   int? amount;
   String note = "Expence";

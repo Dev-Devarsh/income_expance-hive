@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:income_expance/controllers/home_cubit/home_cubit.dart';
+import 'package:income_expance/controllers/tab_cubit/tab_cubit.dart';
 import 'package:income_expance/core/local_db/hive_local.dart';
 import 'package:income_expance/core/local_db/prefrence_utils.dart';
 import 'package:income_expance/pages/splash.dart';
@@ -21,8 +22,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your applicati7979on.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => HomeCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => TabCubit(),
+        ),
+        BlocProvider(
+          create: (context) => HomeCubit(),
+        )
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         localizationsDelegates: [

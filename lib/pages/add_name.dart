@@ -1,9 +1,9 @@
 //  will ask use for their name here
 
+import 'package:flutter/material.dart';
 import 'package:income_expance/core/constants/common_strings.dart';
 import 'package:income_expance/core/local_db/prefrence_utils.dart';
-import 'package:income_expance/pages/homepage.dart';
-import 'package:flutter/material.dart';
+import 'package:income_expance/pages/home/home.dart';
 
 class AddName extends StatefulWidget {
   const AddName({Key? key}) : super(key: key);
@@ -125,7 +125,7 @@ class _AddNameState extends State<AddName> {
                     await Sf.setString(Keys.name, name);
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
-                        builder: (context) => const HomePage(),
+                        builder: (context) => const Home(),
                       ),
                     );
                   }

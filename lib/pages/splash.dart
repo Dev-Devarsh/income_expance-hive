@@ -3,9 +3,9 @@
 import 'package:income_expance/core/constants/common_strings.dart';
 import 'package:income_expance/core/local_db/prefrence_utils.dart';
 import 'package:income_expance/pages/add_name.dart';
-import 'package:income_expance/pages/homepage.dart';
 import 'package:income_expance/core/services/local_auth_service.dart';
 import 'package:flutter/material.dart';
+import 'package:income_expance/pages/home/home.dart';
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
@@ -39,7 +39,7 @@ class _SplashState extends State<Splash> {
         if (auth) {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
-              builder: (context) => const HomePage(),
+              builder: (context) => const Home(),
             ),
           );
         } else {
@@ -52,7 +52,7 @@ class _SplashState extends State<Splash> {
       } else {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (context) => const HomePage(),
+            builder: (context) => const Home(),
           ),
         );
       }
@@ -107,7 +107,7 @@ class _SplashState extends State<Splash> {
                   if (auth) {
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
-                        builder: (context) => const HomePage(),
+                        builder: (context) => const Home(),
                       ),
                     );
                   } else {

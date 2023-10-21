@@ -1,8 +1,7 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:income_expance/pages/homepage.dart';
+import 'package:income_expance/pages/home/home_tab.dart';
 import 'package:income_expance/pages/models/transaction.dart';
 import 'package:meta/meta.dart';
 
@@ -86,6 +85,12 @@ class HomeCubit extends Cubit<HomeState> {
     final data = await fetch(date);
     getTotalBalance(data, date);
     emit(FetchData(data));
+    Future.delayed(
+      1000.milliseconds,
+      () {
+        emit(MokeState());
+      },
+    );
   }
 
   chnageMonth(DateTime date) {
