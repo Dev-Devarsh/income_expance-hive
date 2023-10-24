@@ -4,7 +4,6 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:income_expance/controllers/home_cubit/home_cubit.dart';
-import 'package:income_expance/core/theme/theme.dart';
 import 'package:income_expance/pages/home/home_tab.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -28,13 +27,14 @@ class _InsightsScreenState extends State<InsightsScreen> {
     _tooltipBehavior = TooltipBehavior(enable: true, activationMode: ActivationMode.singleTap);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _homeCubit.getData(selectedMonth);
+       SQMTelPoints.add(FlSpot(xValue, widget.SQMTELValue));
     });
   }
 
   @override
   Widget build(BuildContext context) {
     _homeCubit = BlocProvider.of<HomeCubit>(context);
-    return Column(
+    return const Column(
       children: [
         // BlocBuilder<HomeCubit, HomeState>(
         //   buildWhen: (previous, current) => current is FetchData,
@@ -117,12 +117,14 @@ class _InsightsScreenState extends State<InsightsScreen> {
         //     // );
         //   },
         // ),
-        Flexible(
-          flex: 50,
-          child: LineChart(
-            
-          ),
-        )
+        // Flexible(
+        //   flex: 50,
+        //   child: LineChart(
+        //    LineChartData(
+
+        //    )
+        //   ),
+        // )
       ],
     );
   }
