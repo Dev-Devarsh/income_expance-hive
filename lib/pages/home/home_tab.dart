@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,10 +21,10 @@ class HomePage extends StatefulWidget {
 }
 
 DateTime selectedMonth = DateTime.now();
+List<String> months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 class _HomePageState extends State<HomePage> {
   Map? data;
-  List<String> months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   late TooltipBehavior _tooltipBehavior;
   // late ZoomPanBehavior _zoomPanBehavior;
   late HomeCubit _homeCubit;
@@ -116,7 +114,7 @@ class _HomePageState extends State<HomePage> {
                 buildWhen: (previous, current) => current is ChangeDate || current is FetchData,
                 builder: (context, state) {
                   if (state is ChangeDate || state is FetchData) {
-                    return Animate(key: UniqueKey(), effects: const [ScaleEffect()], child: selectMonth());
+                    return Animate(effects: const [ScaleEffect()], child: selectMonth());
                   }
                   return Container();
                 },
@@ -137,6 +135,7 @@ class _HomePageState extends State<HomePage> {
                         Colors.blueAccent,
                       ],
                     ),
+                    boxShadow: [BoxShadow(blurRadius: 2, color: Colors.black26, spreadRadius: 1, offset: Offset(0, 2))],
                     borderRadius: BorderRadius.all(
                       Radius.circular(
                         24.0,
@@ -267,21 +266,44 @@ class _HomePageState extends State<HomePage> {
                 buildWhen: (previous, current) => current is FetchData,
                 builder: (context, state) {
                   if (state is FetchData) {
-                    log(''
-                        // 'data ${state.data.map((e) => '${e.date.day} - ${e.date.month}')}',
-                        );
                     if (state.data.isNotEmpty) {
                       return transectionList(state.data);
                     } else {
-                      return Container();
+                      return Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
+                          boxShadow: const [BoxShadow(blurRadius: 2, color: Colors.black26, spreadRadius: 1, offset: Offset(0, 2))],
+                        ),
+                        height: MediaQuery.of(context).size.height * .45,
+                        margin: const EdgeInsets.symmetric(horizontal: 15),
+                        child: const Center(
+                            child: Text('No data available',
+                                style: TextStyle(
+                                  fontSize: 22.0,
+                                  color: Colors.black87,
+                                  fontWeight: FontWeight.w600,
+                                ))),
+                      );
                     }
                   }
-                  return Container();
+                  return Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white,
+                      boxShadow: const [BoxShadow(blurRadius: 2, color: Colors.black26, spreadRadius: 1, offset: Offset(0, 2))],
+                    ),
+                    margin: const EdgeInsets.symmetric(horizontal: 15),
+                    height: MediaQuery.of(context).size.height * .49,
+                    child: const Center(
+                        child: Text('No data available',
+                            style: TextStyle(
+                              fontSize: 22.0,
+                              color: Colors.black87,
+                              fontWeight: FontWeight.w600,
+                            ))),
+                  );
                 },
-              ),
-              //
-              const SizedBox(
-                height: 60.0,
               ),
             ],
           );
@@ -314,7 +336,7 @@ class _HomePageState extends State<HomePage> {
         if (dataAtIndex.date.month == selectedMonth.month) {
           if (dataAtIndex.type == "Income") {
             return Animate(
-              effects: [FadeEffect(delay: ((index+1)*200).milliseconds)],
+              effects: [FadeEffect(delay: ((index + 1) * 200).milliseconds)],
               child: incomeTile(
                 dataAtIndex.amount,
                 dataAtIndex.note,
@@ -641,6 +663,7 @@ class _HomePageState extends State<HomePage> {
               borderRadius: BorderRadius.circular(
                 8.0,
               ),
+              boxShadow: const [BoxShadow(blurRadius: 2, color: Colors.black26, spreadRadius: 1, offset: Offset(0, 2))],
               color: PrimaryColor,
             ),
             alignment: Alignment.center,
@@ -674,6 +697,7 @@ class _HomePageState extends State<HomePage> {
                   8.0,
                 ),
                 color: Colors.white,
+                boxShadow: const [BoxShadow(blurRadius: 2, color: Colors.black26, spreadRadius: 1, offset: Offset(0, 2))],
               ),
               alignment: Alignment.center,
               child: const Row(
